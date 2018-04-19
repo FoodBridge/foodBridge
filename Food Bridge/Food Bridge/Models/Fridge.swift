@@ -18,5 +18,6 @@ class Fridge {
         self.foods = foods
         self.name = name
         self.description = description
+        self.time = "test"
     }
 }
