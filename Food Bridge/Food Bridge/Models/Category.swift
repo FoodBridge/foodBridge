@@ -9,7 +9,7 @@
 import Foundation
 
 enum Category {
-    case "Category 1"
-    case "Category 2"
-    case "Category 3"
+    case Category1
+    case Category2
+    case Category3
 }
