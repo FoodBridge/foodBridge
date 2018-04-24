@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Create a Fridge-->
         <scene sceneID="Yma-Kr-V6n">
             <objects>
-                <tableViewController id="AXz-pE-Ula" sceneMemberID="viewController">
+                <tableViewController id="AXz-pE-Ula" customClass="FridgeCreationTableViewController" customModule="Food_Bridge" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Mn-49-lVP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,14 +30,26 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IKEA Veggie Balls" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhW-Op-6xM">
-                                            <rect key="frame" x="120" y="34" width="134" height="21"/>
+                                            <rect key="frame" x="98" y="29" width="261" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T5-Fb-mHD">
+                                            <rect key="frame" x="98" y="58" width="261" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLabel" destination="2T5-Fb-mHD" id="FVN-z4-nRy"/>
+                                    <outlet property="nameLabel" destination="mhW-Op-6xM" id="1RW-ET-gcr"/>
+                                    <outlet property="photoView" destination="0af-P7-6xY" id="Uwn-wn-8Jv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -45,7 +57,16 @@
                             <outlet property="delegate" destination="AXz-pE-Ula" id="en3-xN-ci8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fvG-GS-meb"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Create a Fridge" id="fvG-GS-meb">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="OQI-iY-D06"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gSf-Yd-jhN"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addButton" destination="gSf-Yd-jhN" id="kNq-ch-Wck"/>
+                        <outlet property="editButton" destination="OQI-iY-D06" id="VMB-hP-H2l"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27G-mX-Pbp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

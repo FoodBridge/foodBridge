@@ -9,7 +9,11 @@
 import UIKit
 
 class FoodItemTableViewCell: UITableViewCell {
-
+    //    MARK: Properties
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var photoView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +25,6 @@ class FoodItemTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func deleteButton(_ sender: UIButton) {
+    }
 }
