@@ -9,10 +9,18 @@
 import UIKit
 
 class FridgeCreationTableViewController: UITableViewController {
+    
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    
+    //MARK: Properties
+    var foodItems = [Food]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        loadSampleFoodItems()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,23 +37,56 @@ class FridgeCreationTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return foodItems.count
     }
+    
+    //MARK: Private methods
+    private func loadSampleFoodItems() {
+        let photo1 = UIImage(named: "defaultPhoto")
+        let photo2 = UIImage(named: "defaultPhoto")
+        let photo3 = UIImage(named: "defaultPhoto")
 
-    /*
+        guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        
+        guard let food2 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        
+        guard let food3 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        
+        foodItems += [food1, food2, food3]
+    }
+    
+
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "FoodItemTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+            as? FoodItemTableViewCell  else {
+                fatalError("The dequeued cell is not an instance of FoodItemTableViewCell")
+        }
+        
+        // Fetches the appropriate meal for the data source layout.
+        let food = foodItems[indexPath.row]
 
-        // Configure the cell...
-
+        cell.nameLabel.text = food.description
+        cell.photoView.image = food.picture
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
