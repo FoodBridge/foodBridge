@@ -100,8 +100,9 @@ class FridgeCreationTableViewController: UITableViewController {
         // Fetches the appropriate meal for the data source layout.
         let food = foodItems[indexPath.row]
 
-        cell.nameLabel.text = food.description
-        cell.photoView.image = food.picture
+        cell.textLabel?.text = String(describing: food.category)
+        cell.detailTextLabel?.text = food.description
+        cell.imageView?.image = food.picture
         
         return cell
     }

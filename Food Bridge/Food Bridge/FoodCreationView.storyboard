@@ -38,13 +38,25 @@
                         <viewLayoutGuide key="safeArea" id="Sp1-TE-P7s"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Food Item" id="RU1-Mq-C2I">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="C25-9o-PwX"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5fh-Ue-5D6"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="C25-9o-PwX">
+                            <connections>
+                                <segue destination="ghp-hJ-WCI" kind="show" id="8FV-ci-a1m"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="5fh-Ue-5D6"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r60-fR-qF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-511" y="5"/>
+        </scene>
+        <!--FridgeCreationView-->
+        <scene sceneID="RkV-D6-HcI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FridgeCreationView" id="ghp-hJ-WCI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WwQ-oo-Umb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-18" y="-77"/>
         </scene>
         <!--Add-->
         <scene sceneID="wI2-TB-S5Q">
