@@ -9,7 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+<<<<<<< HEAD
+        <!--Fridge Creation Table View Controller-->
+=======
         <!--Create a Fridge-->
+>>>>>>> master
         <scene sceneID="Yma-Kr-V6n">
             <objects>
                 <tableViewController id="AXz-pE-Ula" customClass="FridgeCreationTableViewController" customModule="Food_Bridge" customModuleProvider="target" sceneMemberID="viewController">
@@ -72,11 +76,13 @@
             </objects>
             <point key="canvasLocation" x="495.19999999999999" y="95.802098950524751"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--My Fridge-->
         <scene sceneID="tmt-k6-vhX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="74h-Yn-3PK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Fridge" id="Kou-V6-Gwr"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L9R-HK-T69">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -18,14 +18,21 @@ class FridgeCreationTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+        // Swipe
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+
         
         loadSampleFoodItems()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+   
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +74,19 @@ class FridgeCreationTableViewController: UITableViewController {
     }
     
 
+    //Swipe
+    
+    @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .left {
+            if (self.tabBarController?.selectedIndex)! < 3 { // set your total tabs here
+                self.tabBarController?.selectedIndex += 1
+                
+            }
+        } else if gesture.direction == .right {
+            if (self.tabBarController?.selectedIndex)! > 0 {
+                self.tabBarController?.selectedIndex -= 1
+            }
+        }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -131,6 +151,5 @@ class FridgeCreationTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }
