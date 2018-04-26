@@ -9,11 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-<<<<<<< HEAD
-        <!--Fridge Creation Table View Controller-->
-=======
         <!--Create a Fridge-->
->>>>>>> master
         <scene sceneID="Yma-Kr-V6n">
             <objects>
                 <tableViewController id="AXz-pE-Ula" customClass="FridgeCreationTableViewController" customModule="Food_Bridge" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,10 +63,6 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gSf-Yd-jhN"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="addButton" destination="gSf-Yd-jhN" id="kNq-ch-Wck"/>
-                        <outlet property="editButton" destination="OQI-iY-D06" id="VMB-hP-H2l"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27G-mX-Pbp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

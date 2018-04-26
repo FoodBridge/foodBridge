@@ -16,11 +16,11 @@
 		6A4A007F208727FD009C60C9 /* FoodCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A007E208727FD009C60C9 /* FoodCreationViewController.swift */; };
 		6A4A008120872823009C60C9 /* FridgeCreationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A008020872823009C60C9 /* FridgeCreationTableViewController.swift */; };
 		6A4A00832087285E009C60C9 /* FridgeFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4A00822087285E009C60C9 /* FridgeFeedTableViewController.swift */; };
-<<<<<<< HEAD
+
 		6AA3C41B208F3804001397BC /* FridgeFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3C41A208F3804001397BC /* FridgeFeedViewController.swift */; };
-=======
+
 		6AA0E612208F27260023E437 /* FoodItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA0E611208F27260023E437 /* FoodItemTableViewCell.swift */; };
->>>>>>> master
+
 		6AA408EA207CCB0C003033B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA408E9207CCB0C003033B0 /* AppDelegate.swift */; };
 		6AA408EC207CCB0C003033B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA408EB207CCB0C003033B0 /* ViewController.swift */; };
 		6AA408EF207CCB0C003033B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AA408ED207CCB0C003033B0 /* Main.storyboard */; };
@@ -62,11 +62,11 @@
 		6A4A007E208727FD009C60C9 /* FoodCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCreationViewController.swift; sourceTree = "<group>"; };
 		6A4A008020872823009C60C9 /* FridgeCreationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeCreationTableViewController.swift; sourceTree = "<group>"; };
 		6A4A00822087285E009C60C9 /* FridgeFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeFeedTableViewController.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
+
 		6AA3C41A208F3804001397BC /* FridgeFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeFeedViewController.swift; sourceTree = "<group>"; };
-=======
+
 		6AA0E611208F27260023E437 /* FoodItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTableViewCell.swift; sourceTree = "<group>"; };
->>>>>>> master
+
 		6AA408E6207CCB0C003033B0 /* Food Bridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Food Bridge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AA408E9207CCB0C003033B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AA408EB207CCB0C003033B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -326,13 +326,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				6AA3C41B208F3804001397BC /* FridgeFeedViewController.swift in Sources */,
-=======
 				6AD9B3A6208DA92B00BC2349 /* SignupViewController.swift in Sources */,
 				6AD9B3AC2091A8DA00BC2349 /* ServerConnection.swift in Sources */,
 				6AA0E612208F27260023E437 /* FoodItemTableViewCell.swift in Sources */,
->>>>>>> master
 				6A4A007520872223009C60C9 /* Fridge.swift in Sources */,
 				6AA408EC207CCB0C003033B0 /* ViewController.swift in Sources */,
 				6A4A00832087285E009C60C9 /* FridgeFeedTableViewController.swift in Sources */,
