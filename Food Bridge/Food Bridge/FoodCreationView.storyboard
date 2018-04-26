@@ -46,11 +46,13 @@
             </objects>
             <point key="canvasLocation" x="-511" y="5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Add-->
         <scene sceneID="wI2-TB-S5Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NGh-DA-BgO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Add" id="a0A-FQ-SEl"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PXd-yl-3fZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
