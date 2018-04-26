@@ -11,11 +11,11 @@ import UIKit
 
 class Food {
     //MARK: properties
-    private let picture: UIImage
-    private let category: Category
-    private let description: String
+    var picture: UIImage
+    var category: Category
+    var description: String
     
-    init(picture: UIImage, category: Category, description: String) {
+    init?(picture: UIImage, category: Category, description: String) {
         self.category = category
         self.picture = picture
         self.description = description
