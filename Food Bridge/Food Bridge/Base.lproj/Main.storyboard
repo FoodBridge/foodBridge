@@ -42,6 +42,14 @@
                                     <segue destination="Flk-Qi-Dy8" kind="show" id="oIT-MU-BGV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hln-54-bjO">
+                                <rect key="frame" x="164" y="310" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="HKC-K2-vTe" kind="show" id="6rp-0M-qjS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -74,6 +82,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtj-ev-PbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="608" y="-53"/>
+        </scene>
+        <!--SignUpscreen-->
+        <scene sceneID="wfo-Ed-Ayk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignUpscreen" id="HKC-K2-vTe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcH-tG-0xe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="489" y="156"/>
         </scene>
     </scenes>
 </document>
