@@ -10,8 +10,6 @@ import UIKit
 
 class FridgeCreationTableViewController: UITableViewController {
     
-    @IBOutlet weak var addButton: UIBarButtonItem!
-    @IBOutlet weak var editButton: UIBarButtonItem!
     
     //MARK: Properties
     var foodItems = [Food]()
@@ -87,6 +85,7 @@ class FridgeCreationTableViewController: UITableViewController {
                 self.tabBarController?.selectedIndex -= 1
             }
         }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -152,4 +151,5 @@ class FridgeCreationTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
 
-}
+ }*/
+ }
