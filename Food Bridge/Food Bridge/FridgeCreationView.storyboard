@@ -70,10 +70,10 @@
         <!--FoodCreationView-->
         <scene sceneID="tBm-WR-r58">
             <objects>
-                <viewControllerPlaceholder storyboardName="FoodCreationView" id="p6k-5Y-2Ki" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="CreateFoodItem" storyboardName="FoodCreationView" id="p6k-5Y-2Ki" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wuo-Rs-3io" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090" y="-97"/>
+            <point key="canvasLocation" x="1150" y="95"/>
         </scene>
         <!--My Fridge-->
         <scene sceneID="tmt-k6-vhX">
