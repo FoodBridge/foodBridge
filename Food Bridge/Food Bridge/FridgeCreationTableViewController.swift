@@ -107,6 +107,14 @@ class FridgeCreationTableViewController: UITableViewController {
         return cell
     }
     
+    @IBAction func addFoodItem (segue: UIStoryboardSegue ){
+        if let sender = segue.source as? FoodCreationViewController{
+            self.foodItems.append(sender.food!)
+            print(sender.food?.description)
+            print("added here")
+            self.tableView.reloadData()
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

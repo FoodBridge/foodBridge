@@ -11,6 +11,7 @@ import UIKit
 class FoodCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageOutlet: UIImageView!
+    var food: Food?
     
     @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
@@ -20,6 +21,14 @@ class FoodCreationViewController: UIViewController, UIImagePickerControllerDeleg
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let food = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        self.food = food
+        print("data generated")
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
