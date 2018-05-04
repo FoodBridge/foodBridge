@@ -12,22 +12,21 @@ import Foundation
 
 class FoodCreationViewController: UIViewController,
     UIImagePickerControllerDelegate,
-UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
-
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-
-    var fakeCats = [String]()
-
+    var fakeCats = [Category]()
+    var rowSelected: Int = 0
+    var food: Food?
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var imagePicked: UIImageView!
     @IBOutlet weak var takePicture: UIButton!
     @IBOutlet weak var categoryPicker: UIPickerView!
-    
     @IBOutlet weak var choosePicture: UIButton!
-
     @IBOutlet weak var imageOutlet: UIImageView!
-    var food: Food?
+    
+    
     @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
@@ -39,19 +38,23 @@ UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let food = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+        guard let food = Food(picture: imageOutlet.image!, category: fakeCats[rowSelected], description: textField.text!) else {
             fatalError("Unable to instantiate food1")
         }
         self.food = food
         print("data generated")
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         getCategories()
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
+        textField.delegate = self
+        
+        // Enable the Save button only if the text field has a valid Meal name.
+        //updateSaveButtonState()
+
 
         // Do any additional setup after loading the view.
         
@@ -130,6 +133,25 @@ UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
         activityIndicatorView.stopAnimating()
     }
     
+    //UITextFieldDelegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save button while editing.
+        //saveButton.isEnabled = false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        //updateSaveButtonState()
+        //navigationItem.title = textField.text
+    }
+    
+    
+    //UIPickerView functions
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -141,13 +163,15 @@ UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(describing: fakeCats[row])
     }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        rowSelected = row
+    }
     
+    //Get mock categories for UIPickerView
     func getCategories(){
-        fakeCats.append("Banana")
-        fakeCats.append("Cocos")
-        fakeCats.append("Lemon")
-        fakeCats.append("Orange")
-        fakeCats.append("Strawberry")
+        fakeCats.append(Category.Category1)
+        fakeCats.append(Category.Category2)
+        fakeCats.append(Category.Category3)
     }
         
     

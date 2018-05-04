@@ -81,6 +81,7 @@
                         <outlet property="imageOutlet" destination="5fb-RE-JOq" id="Abp-eL-nZx"/>
                         <outlet property="imagePicked" destination="5fb-RE-JOq" id="5zI-J6-RPd"/>
                         <outlet property="takePicture" destination="Bdy-kN-j2s" id="4eT-mr-8xq"/>
+                        <outlet property="textField" destination="FsF-F5-vbD" id="oNg-gS-Ywk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r60-fR-qF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
