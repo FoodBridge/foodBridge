@@ -43,9 +43,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hln-54-bjO">
-                                <rect key="frame" x="164" y="310" width="46" height="30"/>
+                                <rect key="frame" x="145" y="310" width="85" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Login/SignIn"/>
                                 <connections>
                                     <segue destination="HKC-K2-vTe" kind="show" id="6rp-0M-qjS"/>
                                 </connections>

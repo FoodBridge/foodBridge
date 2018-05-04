@@ -12,19 +12,22 @@ import Foundation
 
 class FoodCreationViewController: UIViewController,
     UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
-    
+UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
+
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
+    var fakeCats = [String]()
 
     
     @IBOutlet weak var imagePicked: UIImageView!
     @IBOutlet weak var takePicture: UIButton!
+    @IBOutlet weak var categoryPicker: UIPickerView!
     
     @IBOutlet weak var choosePicture: UIButton!
 
     @IBOutlet weak var imageOutlet: UIImageView!
     var food: Food?
-    
     @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
@@ -46,6 +49,9 @@ UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getCategories()
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
 
         // Do any additional setup after loading the view.
         
@@ -124,8 +130,25 @@ UINavigationControllerDelegate {
         activityIndicatorView.stopAnimating()
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return fakeCats.count
+    }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(describing: fakeCats[row])
+    }
+    
+    func getCategories(){
+        fakeCats.append("Banana")
+        fakeCats.append("Cocos")
+        fakeCats.append("Lemon")
+        fakeCats.append("Orange")
+        fakeCats.append("Strawberry")
+    }
         
     
     //Swipe
