@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import Foundation
 
-class FoodCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+class FoodCreationViewController: UIViewController,
+    UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
+    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
+    
+    @IBOutlet weak var imagePicked: UIImageView!
+    @IBOutlet weak var takePicture: UIButton!
+    
+    @IBOutlet weak var choosePicture: UIButton!
 
     @IBOutlet weak var imageOutlet: UIImageView!
     var food: Food?
@@ -31,22 +43,7 @@ class FoodCreationViewController: UIViewController, UIImagePickerControllerDeleg
         print("data generated")
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // Dismiss the picker if the user canceled.
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // The info dictionary may contain multiple representations of the image. You want to use the original.
-        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        // Set photoImageView to display the selected image.
-        imageOutlet.image = selectedImage
-        // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,15 +58,76 @@ class FoodCreationViewController: UIViewController, UIImagePickerControllerDeleg
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
-        
     }
-
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    
+    @IBAction func openCameraButton(_ sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            activityIndicatorView.startAnimating()
+            
+            
+            let imagePickerController = UIImagePickerController()
+            
+            // Only allow photos to be picked, not taken.
+            imagePickerController.sourceType = .camera
+            
+            // Make sure ViewController is notified when the user picks an image.
+            imagePickerController.delegate = self
+            present(imagePickerController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    @IBAction func openPhotoLibraryButton(_ sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            activityIndicatorView.startAnimating()
+            let imagePickerController = UIImagePickerController()
+            
+            // Only allow photos to be picked, not taken.
+            imagePickerController.sourceType = .photoLibrary
+            
+            // Make sure ViewController is notified when the user picks an image.
+            imagePickerController.delegate = self
+            present(imagePickerController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+        activityIndicatorView.stopAnimating()
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // The info dictionary may contain multiple representations of the image. You want to use the original.
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        // Set photoImageView to display the selected image.
+        imagePicked.image = selectedImage
+        
+        // Dismiss the picker.
+        dismiss(animated: true, completion: nil)
+        activityIndicatorView.stopAnimating()
+    }
+    
+    
+    
+        
+    
     //Swipe
     
     @objc func swiped(_ gesture: UISwipeGestureRecognizer) {

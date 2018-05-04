@@ -8,17 +8,23 @@
 
 import UIKit
 
-class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     
-    //Test arrays
     
-    let fridges = ["Sarah's Fridge", "Charlie's Fridge"]
     
-    let fridge1 = ["Apple", "Orange", "Mango"]
-    let fridge2 = ["Carrot", "Broccoli", "Cucumber"]
+    //MARK: Properties
+    var foodItems = [Food]()
     
-    let fridge1Description = ["This is an apple", "This orange is orange", "This particular mango tastes very good"]
-    let fridge2Description = ["This carrot is rotten", "Broccoli is healthy", "Cucumber is mostly water"]
+    
+    var filteredFoodItems = [Food]()
+    
+    @IBOutlet
+    var tableView: UITableView!
+    
+    
+    
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     
     
@@ -37,6 +43,17 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
+        loadSampleFoodItems()
+        
+        
+        filteredFoodItems = foodItems
+       
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchBar.searchBarStyle = .minimal
         
     }
     
@@ -44,6 +61,33 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    //MARK: Private methods
+    private func loadSampleFoodItems() {
+        let photo1 = UIImage(named: "defaultPhoto")
+        let photo2 = UIImage(named: "defaultPhoto")
+        let photo3 = UIImage(named: "defaultPhoto")
+        
+        guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        
+        guard let food2 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        
+        guard let food3 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        
+        foodItems += [food1, food2, food3]
+    }
+    
+    
+    
+    
     
     //Swipe
     
@@ -60,57 +104,49 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    //Tableview
     
+    // MARK: - Table view data source
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredFoodItems.count
+    }
+    
+    /*
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return fridges[section]
     }
+    */
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return fridges.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            // Fridge1 Section
-            return fridge1.count
-        case 1:
-            // Fridge2 Section
-            return fridge2.count
-        default:
-            return 0
-        }
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Create an object of the dynamic cell “PlainCell”
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlainCell", for: indexPath)
-        // Depending on the section, fill the textLabel with the relevant text
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "PlainCell"
         
-        
-        
-        switch indexPath.section {
-        case 0:
-            // Fridge1 Section
-            // Fridge1 Titles
-            cell.textLabel?.text = fridge1[indexPath.row]
-            // Fridge1 Descriptions
-            cell.detailTextLabel?.text = fridge1[indexPath.row]
-            break
-        case 1:
-            // Fridge2 Section
-            //Fridge 2 Titles
-            cell.textLabel?.text = fridge2[indexPath.row]
-            // Fridge2 Descriptions
-            cell.detailTextLabel?.text = fridge2[indexPath.row]
-            break
-        default:
-            break
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+            as? FridgeFeedTableViewCell  else {
+                fatalError("The dequeued cell is not an instance of FoodItemTableViewCell")
         }
-        // Return the configured cell
+        
+        // Fetches the appropriate meal for the data source layout.
+        let food = filteredFoodItems[indexPath.row]
+        
+        cell.textLabel?.text = String(describing: food.category)
+        cell.detailTextLabel?.text = food.description
+        cell.imageView?.image = food.picture
+        
         return cell
     }
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if searchController.searchBar.text! == "" {
+            filteredFoodItems = foodItems
+        }
+        else {
+            filteredFoodItems = foodItems.filter({ $0.description.lowercased().contains(searchController.searchBar.text!.lowercased()) || String(describing: $0.category).description.lowercased().contains(searchController.searchBar.text!.lowercased()) })
+        }
+        self.tableView.reloadData()
+    }
+    
     
     
 }

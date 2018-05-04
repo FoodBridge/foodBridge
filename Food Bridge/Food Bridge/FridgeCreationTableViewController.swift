@@ -11,6 +11,7 @@ import UIKit
 class FridgeCreationTableViewController: UITableViewController {
     
     
+    
     //MARK: Properties
     var foodItems = [Food]()
 
@@ -32,6 +33,14 @@ class FridgeCreationTableViewController: UITableViewController {
         loadSampleFoodItems()
    
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
