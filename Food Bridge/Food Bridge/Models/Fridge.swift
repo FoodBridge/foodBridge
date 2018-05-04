@@ -9,9 +9,9 @@
 import Foundation
 
 class Fridge {
-    private let foods: [Food]
-    private let name: String
-    private let description: String
+     let foods: [Food]
+     let name: String
+     let description: String
     private let time: Any?
     
     init(foods: [Food], name:String, description: String) {

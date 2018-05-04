@@ -56,20 +56,35 @@ class FridgeCreationTableViewController: UITableViewController {
         let photo2 = UIImage(named: "defaultPhoto")
         let photo3 = UIImage(named: "defaultPhoto")
 
-        guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+        guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "meat") else {
             fatalError("Unable to instantiate food1")
         }
         
-        guard let food2 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+        guard let food2 = Food(picture: #imageLiteral(resourceName: "logo"), category: Category.Category1, description: "drink") else {
             fatalError("Unable to instantiate food1")
         }
         
-        guard let food3 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+        guard let food3 = Food(picture: #imageLiteral(resourceName: "ImageNotAvailable"), category: Category.Category1, description: "vegetables") else {
             fatalError("Unable to instantiate food1")
         }
         
         foodItems += [food1, food2, food3]
+        
+        let x = Fridge(foods: foodItems, name: "networks test", description: "huh work")
+        
+        ServerConnection.fetchFridges(callback: dummy2)
     }
+    
+    func dummy(){
+        print("HERE IS THE CALLBACK")
+        print(Thread.isMainThread)
+    }
+    
+    func dummy2 (fridges: [Fridge]){
+        foodItems = fridges[0].foods
+        self.tableView.reloadData()
+    }
+    
     
 
     //Swipe
