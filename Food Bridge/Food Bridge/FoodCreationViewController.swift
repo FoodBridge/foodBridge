@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 
+
 class FoodCreationViewController: UIViewController,
     UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -20,6 +21,29 @@ UINavigationControllerDelegate {
     @IBOutlet weak var takePicture: UIButton!
     
     @IBOutlet weak var choosePicture: UIButton!
+
+    @IBOutlet weak var imageOutlet: UIImageView!
+    var food: Food?
+    
+    @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        let imagePickerController = UIImagePickerController()
+        // Only allow photos to be picked, not taken.
+        imagePickerController.sourceType = .photoLibrary
+        // Make sure ViewController is notified when the user picks an image.
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let food = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
+            fatalError("Unable to instantiate food1")
+        }
+        self.food = food
+        print("data generated")
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

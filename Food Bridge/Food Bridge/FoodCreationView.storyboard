@@ -13,7 +13,7 @@
         <!--New Food Item-->
         <scene sceneID="bEB-Mx-jeo">
             <objects>
-                <viewController id="yCx-LC-2ve" customClass="FoodCreationViewController" customModule="Food_Bridge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateFoodItem" id="yCx-LC-2ve" customClass="FoodCreationViewController" customModule="Food_Bridge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rVc-vL-beC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,6 +21,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ImageNotAvailable" translatesAutoresizingMaskIntoConstraints="NO" id="5fb-RE-JOq">
                                 <rect key="frame" x="67" y="94" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ALB-nM-rAC" appends="YES" id="y0T-ys-MW2"/>
+                                </connections>
                             </imageView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="co5-Sx-j2T">
                                 <rect key="frame" x="0.0" y="416" width="375" height="130"/>
@@ -59,18 +63,42 @@
                         <viewLayoutGuide key="safeArea" id="Sp1-TE-P7s"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Food Item" id="RU1-Mq-C2I">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="C25-9o-PwX"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="C25-9o-PwX">
+                            <connections>
+                                <segue destination="ghp-hJ-WCI" kind="show" id="8FV-ci-a1m"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="5fh-Ue-5D6">
+                            <connections>
+                                <segue destination="Rwy-Xl-mUo" kind="unwind" unwindAction="addFoodItemWithSegue:" id="KRl-3f-9k8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorView" destination="efd-Dm-aJo" id="0UH-bk-Deu"/>
                         <outlet property="choosePicture" destination="YHT-ai-mMb" id="6Q4-fu-bIj"/>
                         <outlet property="imagePicked" destination="5fb-RE-JOq" id="5zI-J6-RPd"/>
                         <outlet property="takePicture" destination="Bdy-kN-j2s" id="4eT-mr-8xq"/>
+                      <outlet property="imageOutlet" destination="5fb-RE-JOq" id="Abp-eL-nZx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r60-fR-qF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Rwy-Xl-mUo" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="ALB-nM-rAC">
+                    <connections>
+                        <action selector="selectImageFromLibrary:" destination="yCx-LC-2ve" id="2jz-4H-9Qr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-511.19999999999999" y="4.9475262368815596"/>
+        </scene>
+        <!--FridgeCreationView-->
+        <scene sceneID="RkV-D6-HcI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FridgeCreationView" id="ghp-hJ-WCI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WwQ-oo-Umb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="266" y="4"/>
         </scene>
         <!--Add-->
         <scene sceneID="wI2-TB-S5Q">
