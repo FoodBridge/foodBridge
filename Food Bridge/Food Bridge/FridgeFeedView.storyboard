@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="LC9-eR-eB6">
-                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlainCell" textLabel="OFB-TO-rF6" detailTextLabel="dIa-w0-vXT" imageView="SiF-fU-dAk" rowHeight="128" style="IBUITableViewCellStyleSubtitle" id="vZz-YH-pwL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlainCell" textLabel="OFB-TO-rF6" detailTextLabel="dIa-w0-vXT" imageView="SiF-fU-dAk" rowHeight="128" style="IBUITableViewCellStyleSubtitle" id="vZz-YH-pwL" customClass="FridgeFeedTableViewCell" customModule="Food_Bridge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vZz-YH-pwL" id="UA1-f5-c7x">
@@ -59,34 +59,40 @@
                                     <outlet property="delegate" destination="kX8-Uf-SX2" id="AEn-AT-Nn2"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="bbe-GC-oIT">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bbe-GC-oIT" firstAttribute="trailing" secondItem="LC9-eR-eB6" secondAttribute="trailing" id="5Hf-Nd-f4K"/>
-                            <constraint firstItem="bbe-GC-oIT" firstAttribute="leading" secondItem="LC9-eR-eB6" secondAttribute="leading" id="5to-pp-wHt"/>
-                            <constraint firstItem="bbe-GC-oIT" firstAttribute="leading" secondItem="xy1-VL-nrb" secondAttribute="leading" id="DRn-9w-LbH"/>
-                            <constraint firstItem="LC9-eR-eB6" firstAttribute="top" secondItem="bbe-GC-oIT" secondAttribute="bottom" id="Fa8-wq-RaV"/>
-                            <constraint firstItem="bbe-GC-oIT" firstAttribute="top" secondItem="9bM-8d-PMX" secondAttribute="top" id="NzZ-dS-n8P"/>
-                            <constraint firstItem="LC9-eR-eB6" firstAttribute="bottom" secondItem="9bM-8d-PMX" secondAttribute="bottom" id="Sju-BX-eSg"/>
-                            <constraint firstAttribute="trailing" secondItem="bbe-GC-oIT" secondAttribute="trailing" id="kVw-Qu-Jw0"/>
+                            <constraint firstItem="LC9-eR-eB6" firstAttribute="bottom" secondItem="9bM-8d-PMX" secondAttribute="bottom" id="8pw-GA-Fjw"/>
+                            <constraint firstItem="LC9-eR-eB6" firstAttribute="trailing" secondItem="9bM-8d-PMX" secondAttribute="trailing" id="9zQ-p8-we9"/>
+                            <constraint firstItem="LC9-eR-eB6" firstAttribute="leading" secondItem="9bM-8d-PMX" secondAttribute="leading" id="QQr-Ma-a6T"/>
+                            <constraint firstItem="LC9-eR-eB6" firstAttribute="top" secondItem="9bM-8d-PMX" secondAttribute="top" id="kbo-aH-cEv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9bM-8d-PMX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Fridges" id="z2y-hP-B62">
                         <barButtonItem key="backBarButtonItem" title="Back" id="uGI-5n-Toa"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="LTA-af-c4s" id="8pJ-IG-V3Z"/>
+                        <outlet property="tableView" destination="LC9-eR-eB6" id="Ty2-nj-Zj7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJ8-yJ-yXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="LTA-af-c4s">
+                    <connections>
+                        <outlet property="delegate" destination="kX8-Uf-SX2" id="SVh-mH-7jv"/>
+                        <outlet property="searchContentsController" destination="kX8-Uf-SX2" id="t35-mz-3ZV"/>
+                        <outlet property="searchResultsDataSource" destination="kX8-Uf-SX2" id="lfb-hP-903"/>
+                        <outlet property="searchResultsDelegate" destination="kX8-Uf-SX2" id="z7i-0I-trR"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-319.19999999999999" y="-134.48275862068968"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXY-7D-6Ve">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Z0-Cz-dQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Thc-nR-xIf" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Byh-by-Wa9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -95,7 +101,6 @@
                         <viewLayoutGuide key="safeArea" id="8lF-AJ-gVm"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Z0-Cz-dQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="500" y="-134"/>
         </scene>

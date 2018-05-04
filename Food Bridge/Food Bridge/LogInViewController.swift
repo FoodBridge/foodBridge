@@ -22,6 +22,15 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //Notification for the keyboard
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: NSNotification.Name.UIKeyboardWillShow,
+            object: nil
+        )
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +38,37 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //Keyboard actions
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            animateViewMoving(up: true, moveValue: keyboardHeight)
+        }
+    }
+    
+    @objc func keyboardWillDissappear(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            animateViewMoving(up: false, moveValue: keyboardHeight)
+            
+        }
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        let movementDuration:TimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+        
+        UIView.beginAnimations("animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
 
     /*
     // MARK: - Navigation
