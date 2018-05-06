@@ -11,9 +11,131 @@ import UIKit
 
 class ServerConnection {
     
-    static var baseApi = URL(string: "https://food-recycling.herokuapp.com")
+    static let baseApi = URL(string: "https://food-recycling.herokuapp.com")
     
-    static var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YWRlZDM4MmVhODI4YTAwMTRhODNkNGQiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTI0NTkzMDg0fQ.Lmme7NRg7auKR_9KUud2Tx8jE_yYscxKPFhDo_DwioI"
+    static var userDefaults = UserDefaults.standard
+    
+    static var token: String{
+        get{
+            return userDefaults.string(forKey: "AuthToken")!
+        }
+    }
+    
+    
+    static func logIn (email:String, password: String, callback: @escaping (StringError)->()){
+        struct Formdata: Codable{
+            let email: String
+            let password: String
+        }
+        
+        let formdata = Formdata(email: email, password: password)
+        
+        guard let uploadData = try? JSONEncoder().encode(formdata) else {
+            let error = StringError.Error("can't parse into json")
+            callback(error)
+            return
+        }
+        
+        let api = baseApi!.appendingPathComponent("/api/auth/login")
+        print(api)
+        var request = URLRequest(url: api)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
+            if let error = error {
+                print ("error: \(error)")
+                return
+            }
+            guard let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) else {
+                    let dataString = String(data: data!, encoding: .utf8)
+                    print (dataString)
+                    return
+            }
+            if let mimeType = response.mimeType,
+                mimeType == "application/json",
+                let data = data,
+                let dataString = String(data: data, encoding: .utf8) {
+                print(dataString)
+                let jsonresponse = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let dictionary = jsonresponse as? [String:Any]{
+                    if let nestedArray = dictionary["tokens"] as? [Any] {
+                        if let firstObject = nestedArray.first {
+                            if let finalDictionary = firstObject as? [String:Any]{
+                                if let token = finalDictionary["token"] as? String {
+                                    DispatchQueue.main.async {
+                                        callback(StringError.String(token))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        task.resume()
+        
+        
+    }
+    
+    static func signUp (email:String, password: String, callback: @escaping (StringError)->()){
+        
+        struct Formdata: Codable{
+            let email: String
+            let password: String
+        }
+        
+        let formdata = Formdata(email: email, password: password)
+        
+        guard let uploadData = try? JSONEncoder().encode(formdata) else {
+            let error = StringError.Error("can't parse into json")
+            DispatchQueue.main.async {
+                callback(error)
+            }
+            return
+        }
+        
+        let api = baseApi!.appendingPathComponent("/api/users")
+        print(api)
+        var request = URLRequest(url: api)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
+            if let error = error {
+                print ("error: \(error)")
+                return
+            }
+            guard let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) else {
+                    print ("server error")
+                    return
+            }
+            if let mimeType = response.mimeType,
+                mimeType == "application/json",
+                let data = data,
+                let dataString = String(data: data, encoding: .utf8) {
+                print(dataString)
+                let jsonresponse = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let dictionary = jsonresponse as? [String:Any]{
+                    if let nestedArray = dictionary["tokens"] as? [Any] {
+                        if let firstObject = nestedArray.first {
+                            if let finalDictionary = firstObject as? [String:Any]{
+                                if let token = finalDictionary["token"] as? String {
+                                    DispatchQueue.main.async {
+                                        callback(StringError.String(token))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
     
     
     
