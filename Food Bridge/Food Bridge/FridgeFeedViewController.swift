@@ -66,9 +66,8 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
     
     //MARK: Private methods
     private func loadSampleFoodItems() {
-        let photo1 = UIImage(named: "defaultPhoto")
-        let photo2 = UIImage(named: "defaultPhoto")
-        let photo3 = UIImage(named: "defaultPhoto")
+
+        ServerConnection.fetchFridges(callback: callB)
         
         guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "IKEA Veggie Balls") else {
             fatalError("Unable to instantiate food1")
@@ -82,9 +81,21 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
             fatalError("Unable to instantiate food1")
         }
         
-        foodItems += [food1, food2, food3]
+        //foodItems += [food1, food2, food3]
     }
     
+    func callB (fridges: [Fridge]){
+        
+        for fridge in fridges {
+            for food in fridge.foods{
+                foodItems.append(food)
+                print(food.description)
+            }
+        }
+        filteredFoodItems = foodItems
+        print(foodItems)
+        self.tableView.reloadData()
+    }
     
     
     

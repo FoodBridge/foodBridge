@@ -27,13 +27,11 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W84-9z-dzR">
                                             <rect key="frame" x="143" y="53" width="33.5" height="20.5"/>
-
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3sK-Ex-5ZU">
                                             <rect key="frame" x="143" y="76.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -41,7 +39,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="ImageNotAvailable" id="G9y-lt-O0q">
                                             <rect key="frame" x="16" y="17" width="112" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -57,7 +54,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Create a Fridge" id="fvG-GS-meb">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="OQI-iY-D06"/>
+                        <barButtonItem key="leftBarButtonItem" title="Upload" id="OQI-iY-D06">
+                            <connections>
+                                <action selector="uploadFridge:" destination="AXz-pE-Ula" id="stq-ut-0tU"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gSf-Yd-jhN">
                             <connections>
                                 <segue destination="p6k-5Y-2Ki" kind="show" id="aC7-6g-JYn"/>
@@ -81,8 +82,11 @@
         <!--My Fridge-->
         <scene sceneID="tmt-k6-vhX">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAe-vz-tCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="74h-Yn-3PK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Fridge" id="Kou-V6-Gwr"/>
+                    <tabBarItem key="tabBarItem" title="My Fridge" id="Kou-V6-Gwr">
+                        <color key="badgeColor" red="0.1843137255" green="0.44705882349999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L9R-HK-T69">
@@ -94,7 +98,6 @@
                         <segue destination="AXz-pE-Ula" kind="relationship" relationship="rootViewController" id="hoO-y2-53K"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vAe-vz-tCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-185" y="96"/>
         </scene>
