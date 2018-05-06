@@ -47,16 +47,14 @@ class ServerConnection {
                 print(dataString)
                 let jsonresponse = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let fridges = jsonresponse as? [Any]{
+                    var fridgeMiddleman = [FridgeEXT]()
                     for fridge in fridges {
-                        var fridgeCounter = 0
                         if let fridgeData = fridge as? [String: Any]{
                             
                             guard let foods = fridgeData["posts"] as? [Any] else{
                                 print("can't parse foods")
                                 continue
                             }
-                            
-                            
                             
                             if foods.isEmpty{
                                 print("empty fridge")
@@ -75,11 +73,7 @@ class ServerConnection {
                             
                             print("non empty")
                             
-                            fridgeCounter += 1
-                            
-                            var foodInFridge = [Food]()
-                            
-                            var foodCounter = 0
+                            var foodInFridge = [FoodEXT]()
                             
                             for food in foods {
                                 if let foodData = food as? [String:Any]{
@@ -100,30 +94,60 @@ class ServerConnection {
                                         continue
                                     }
                                     
-                                    foodCounter += 1
+                                    var foodItem = FoodEXT(picture: #imageLiteral(resourceName: "ImageNotAvailable"), category: Category.Category1, description: description)
                                     
-                                    func addFridge (image: UIImage){
-                                        foodCounter -= 1
-                                        foodInFridge.append(Food(picture: image, category: Category.Category1, description: description)!)
-                                        if foodCounter == 0{
-                                            fetchedFridges.append(Fridge(foods: foodInFridge, name: name, description: description))
-                                            fridgeCounter -= 1
-                                            if fridgeCounter == 0{
-                                                DispatchQueue.main.async {
-                                                    callback(fetchedFridges)
-                                                }
-                                            }
-                                        }
+                                    foodItem?.pathData = imgPath
+                                    
+                                    foodInFridge.append(foodItem!)
+                                    
+                                }
+                            }
+                            fridgeMiddleman.append(FridgeEXT(foods: foodInFridge, description: description, name: name))
+                        }
+                    }
+                    var requestCounter = 0
+                    var requestTable = [Int:Bool]()
+                    var finalFoodFlag = false
+                    
+                    for fakeFridge in fridgeMiddleman {
+                        var finalFoods = [Food]()
+                        
+                        var foodID: Int
+                        
+                        
+                        for fakeFood in fakeFridge.foods{
+                            
+                            func onImageFetch (image: UIImage) {
+                                finalFoods.append(Food(picture: image, category: Category.Category1, description: fakeFood.description)!)
+                                requestTable[foodID] = true
+                                
+                                if fakeFridge.foods.last === fakeFood {
+                                    
+                                    if fridgeMiddleman.last === fakeFridge{
+                                        finalFoodFlag = true
                                     }
-                                    
-                                    downloadPhoto(path: imgPath, callback:addFridge)
+                                }
+                                
+                                if finalFoodFlag, !requestTable.values.contains(false){
+                                    callback(fetchedFridges)
                                 }
                             }
                             
-                            fetchedFridges.append(Fridge(foods: foodInFridge, name: name, description: description))
+                            requestCounter += 1
+                            foodID = requestCounter
+                            requestTable[foodID] = false
+                            downloadPhoto(path: fakeFood.pathData!, callback: onImageFetch)
+                            
                         }
+                        
+                        var finalFridge = Fridge(foods: finalFoods, name: fakeFridge.name, description: fakeFridge.description)
                     }
+                    
+                    
                 }
+            }
+            DispatchQueue.main.async {
+                callback(fetchedFridges)
             }
             
             
@@ -260,7 +284,7 @@ class ServerConnection {
             print (response)
             if response.statusCode == 200{
                 print("image convertion")
-                var image = UIImage(data: data!)
+                let image = UIImage(data: data!)
                 callback(image!)
             }
         }
@@ -331,3 +355,24 @@ extension NSMutableData {
         append(data!)
     }
 }
+
+private class FoodEXT: Food {
+    var pathData: String?
+    
+    func toFood() -> Food {
+        return Food(picture: self.picture, category: self.category, description: self.description)!
+    }
+}
+
+private class FridgeEXT {
+    var foods: [FoodEXT]
+    var description: String
+    var name: String
+    
+    init(foods: [FoodEXT], description: String, name: String) {
+        self.foods = foods
+        self.description = description
+        self.name = name
+    }
+}
+
