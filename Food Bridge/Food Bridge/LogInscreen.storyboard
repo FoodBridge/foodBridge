@@ -105,7 +105,7 @@
                     <connections>
                         <outlet property="email" destination="NOF-sk-Byg" id="nQu-zi-y1t"/>
                         <outlet property="password" destination="wDQ-AI-VOi" id="y1t-ET-qBH"/>
-                        <segue destination="vE4-2G-x6Q" kind="show" identifier="loggedIn" id="duz-V6-D6s"/>
+                        <segue destination="vE4-2G-x6Q" kind="presentation" identifier="loggedIn" modalPresentationStyle="fullScreen" id="duz-V6-D6s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="svq-UY-ZbV" userLabel="First Responder" sceneMemberID="firstResponder"/>

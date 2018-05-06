@@ -54,23 +54,17 @@ class FridgeCreationTableViewController: UITableViewController {
     
     //MARK: Private methods
     private func loadSampleFoodItems() {
-        let photo1 = UIImage(named: "defaultPhoto")
-        let photo2 = UIImage(named: "defaultPhoto")
-        let photo3 = UIImage(named: "defaultPhoto")
 
-        guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "meat") else {
+        guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "Kiwi") else {
             fatalError("Unable to instantiate food1")
         }
         
-        guard let food2 = Food(picture: #imageLiteral(resourceName: "logo"), category: Category.Category1, description: "drink") else {
+        guard let food2 = Food(picture: #imageLiteral(resourceName: "logo"), category: Category.Category1, description: "Lemon") else {
             fatalError("Unable to instantiate food1")
         }
         
-        guard let food3 = Food(picture: #imageLiteral(resourceName: "ImageNotAvailable"), category: Category.Category1, description: "vegetables") else {
-            fatalError("Unable to instantiate food1")
-        }
         
-        foodItems += [food1, food2, food3]
+        foodItems += [food1, food2]
         
     }
     
@@ -108,6 +102,16 @@ class FridgeCreationTableViewController: UITableViewController {
         cell.imageView?.image = food.picture
         
         return cell
+    }
+    
+    @IBAction func uploadFridge(_ sender: UIBarButtonItem) {
+        let fridge = Fridge(foods: foodItems, name: "test", description: "also test")
+        ServerConnection.uploadFridge(fridge: fridge, callback: callB)
+        
+    }
+    
+    func callB () {
+        print("maybe worked")
     }
     
     @IBAction func addFoodItem (segue: UIStoryboardSegue ){

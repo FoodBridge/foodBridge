@@ -234,48 +234,63 @@ class ServerConnection {
                     for fakeFridge in fridgeMiddleman {
                         var finalFoods = [Food]()
                         
-                        var foodID: Int
                         
+                        var finalFoodinFridgeFlag = false
+                        var fridgerequestTable = [Int:Bool]()
                         
                         for fakeFood in fakeFridge.foods{
+                            
+                            requestCounter += 1
+                            var foodID = requestCounter
+                            requestTable[foodID] = false
+                            fridgerequestTable[foodID] = false
                             
                             func onImageFetch (image: UIImage) {
                                 finalFoods.append(Food(picture: image, category: Category.Category1, description: fakeFood.description)!)
                                 requestTable[foodID] = true
+                                fridgerequestTable[foodID] = true
+                                print("appending here")
                                 
                                 if fakeFridge.foods.last === fakeFood {
                                     
+                                    finalFoodinFridgeFlag = true
+                                    print("last of the fridge")
+                                    
                                     if fridgeMiddleman.last === fakeFridge{
                                         finalFoodFlag = true
+                                        print("last fridge")
                                     }
                                 }
                                 
+                                print(fridgerequestTable.values)
+                                
+                                if finalFoodinFridgeFlag, !fridgerequestTable.values.contains(false){
+                                    print("fridge adding happens")
+                                    fetchedFridges.append(Fridge(foods: finalFoods, name: fakeFridge.name, description: fakeFridge.description))
+                                }
+                                
                                 if finalFoodFlag, !requestTable.values.contains(false){
-                                    callback(fetchedFridges)
+                                    DispatchQueue.main.async {
+                                        print("callback called")
+                                        callback(fetchedFridges)
+                                    }
                                 }
                             }
                             
-                            requestCounter += 1
-                            foodID = requestCounter
-                            requestTable[foodID] = false
+                            
                             downloadPhoto(path: fakeFood.pathData!, callback: onImageFetch)
                             
                         }
-                        
-                        var finalFridge = Fridge(foods: finalFoods, name: fakeFridge.name, description: fakeFridge.description)
                     }
                     
                     
                 }
             }
-            DispatchQueue.main.async {
-                callback(fetchedFridges)
             }
-            
-            
-        }
         task.resume()
-    }
+        }
+    
+
     
     
     static func uploadFridge (fridge: Fridge, callback:@escaping ()->()){
