@@ -33,15 +33,8 @@ class FridgeCreationTableViewController: UITableViewController {
         loadSampleFoodItems()
    
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,21 +72,7 @@ class FridgeCreationTableViewController: UITableViewController {
         
         foodItems += [food1, food2, food3]
         
-        let x = Fridge(foods: foodItems, name: "networks test", description: "huh work")
-        
-        ServerConnection.fetchFridges(callback: dummy2)
     }
-    
-    func dummy(){
-        print("HERE IS THE CALLBACK")
-        print(Thread.isMainThread)
-    }
-    
-    func dummy2 (fridges: [Fridge]){
-        foodItems = fridges[0].foods
-        self.tableView.reloadData()
-    }
-    
     
 
     //Swipe
