@@ -169,9 +169,16 @@ UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UI
     
     //Get mock categories for UIPickerView
     func getCategories(){
-        fakeCats.append(Category.Category1)
-        fakeCats.append(Category.Category2)
-        fakeCats.append(Category.Category3)
+        fakeCats.append(Category.Avocado)
+        fakeCats.append(Category.Banana)
+        fakeCats.append(Category.Cocos)
+        fakeCats.append(Category.Kiwi)
+        fakeCats.append(Category.Lemon)
+        fakeCats.append(Category.Limes)
+        fakeCats.append(Category.Mango)
+        fakeCats.append(Category.Orange)
+        fakeCats.append(Category.Pineapple)
+        fakeCats.append(Category.Strawberry)
     }
         
     

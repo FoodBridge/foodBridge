@@ -8,8 +8,15 @@
 
 import Foundation
 
-enum Category {
-    case Category1
-    case Category2
-    case Category3
+enum Category: String {
+    case Avocado = "Avocado"
+    case Banana = "Banana"
+    case Cocos = "Cocos"
+    case Kiwi = "Kiwi"
+    case Lemon = "Lemon"
+    case Limes = "Limes"
+    case Mango = "Mango"
+    case Orange = "Orange"
+    case Pineapple = "Pineapple"
+    case Strawberry = "Strawberry"
 }
