@@ -54,17 +54,6 @@ class FridgeCreationTableViewController: UITableViewController {
     
     //MARK: Private methods
     private func loadSampleFoodItems() {
-
-        guard let food1 = Food(picture: #imageLiteral(resourceName: "defaultPhoto"), category: Category.Category1, description: "Kiwi") else {
-            fatalError("Unable to instantiate food1")
-        }
-        
-        guard let food2 = Food(picture: #imageLiteral(resourceName: "logo"), category: Category.Category1, description: "Lemon") else {
-            fatalError("Unable to instantiate food1")
-        }
-        
-        
-        foodItems += [food1, food2]
         
     }
     
@@ -112,6 +101,7 @@ class FridgeCreationTableViewController: UITableViewController {
     
     func callB () {
         print("maybe worked")
+        tabBarController?.selectedIndex = 0
     }
     
     @IBAction func addFoodItem (segue: UIStoryboardSegue ){

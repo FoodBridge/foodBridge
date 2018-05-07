@@ -216,7 +216,9 @@ class ServerConnection {
                                         continue
                                     }
                                     
-                                    var foodItem = FoodEXT(picture: #imageLiteral(resourceName: "ImageNotAvailable"), category: Category.Category1, description: description)
+                                    let cat = Category(rawValue: category)
+                                    
+                                    var foodItem = FoodEXT(picture: #imageLiteral(resourceName: "ImageNotAvailable"), category: cat!, description: description)
                                     
                                     foodItem?.pathData = imgPath
                                     
@@ -246,7 +248,7 @@ class ServerConnection {
                             fridgerequestTable[foodID] = false
                             
                             func onImageFetch (image: UIImage) {
-                                finalFoods.append(Food(picture: image, category: Category.Category1, description: fakeFood.description)!)
+                                finalFoods.append(Food(picture: image, category: fakeFood.category, description: fakeFood.description)!)
                                 requestTable[foodID] = true
                                 fridgerequestTable[foodID] = true
                                 print("appending here")
@@ -272,7 +274,7 @@ class ServerConnection {
                                 if finalFoodFlag, !requestTable.values.contains(false){
                                     DispatchQueue.main.async {
                                         print("callback called")
-                                        callback(fetchedFridges)
+                                        callback(fetchedFridges.reversed())
                                     }
                                 }
                             }
@@ -368,7 +370,11 @@ class ServerConnection {
             print(url)
             let tempToken = token
             
-            let data = jsonData(imgPath: photoPath, category: food.description, price: 10, description: food.description, fridge: fridgeID)
+            if food.description == "" {
+                food.description = " "
+            }
+            
+            let data = jsonData(imgPath: photoPath, category: food.category.rawValue, price: 10, description: food.description, fridge: fridgeID)
             
             guard let uploadData = try? JSONEncoder().encode(data) else {
                 print("can't encode json")
@@ -423,6 +429,8 @@ class ServerConnection {
                 print("image convertion")
                 let image = UIImage(data: data!)
                 callback(image!)
+            } else {
+                callback(#imageLiteral(resourceName: "ImageNotAvailable"))
             }
         }
         task.resume()
@@ -495,10 +503,6 @@ extension NSMutableData {
 
 private class FoodEXT: Food {
     var pathData: String?
-    
-    func toFood() -> Food {
-        return Food(picture: self.picture, category: self.category, description: self.description)!
-    }
 }
 
 private class FridgeEXT {
