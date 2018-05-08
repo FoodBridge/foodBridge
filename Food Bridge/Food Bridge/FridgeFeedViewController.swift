@@ -46,8 +46,6 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
         loadSampleFoodItems()
         
         
-        filteredFoodItems = foodItems
-       
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -55,6 +53,11 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
         
         searchController.searchBar.searchBarStyle = .minimal
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadSampleFoodItems()
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +75,7 @@ class FridgeFeedViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func callB (fridges: [Fridge]){
-        
+        foodItems.removeAll()
         for fridge in fridges {
             for food in fridge.foods{
                 foodItems.append(food)
