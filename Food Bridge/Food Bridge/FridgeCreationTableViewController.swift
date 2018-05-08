@@ -95,6 +95,8 @@ class FridgeCreationTableViewController: UITableViewController {
     
     @IBAction func uploadFridge(_ sender: UIBarButtonItem) {
         let fridge = Fridge(foods: foodItems, name: "test", description: "also test")
+        foodItems.removeAll()
+        self.tableView.reloadData()
         ServerConnection.uploadFridge(fridge: fridge, callback: callB)
         
     }
@@ -106,10 +108,13 @@ class FridgeCreationTableViewController: UITableViewController {
     
     @IBAction func addFoodItem (segue: UIStoryboardSegue ){
         if let sender = segue.source as? FoodCreationViewController{
-            self.foodItems.append(sender.food!)
-            print(sender.food?.description)
-            print("added here")
-            self.tableView.reloadData()
+            if let newItem = sender.food {
+                self.foodItems.append(newItem)
+                print(sender.food?.description)
+                print("added here")
+                self.tableView.reloadData()
+            }
+            
         }
     }
 

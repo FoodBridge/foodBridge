@@ -233,6 +233,8 @@ class ServerConnection {
                     var requestTable = [Int:Bool]()
                     var finalFoodFlag = false
                     
+                    
+                    
                     for fakeFridge in fridgeMiddleman {
                         var finalFoods = [Food]()
                         

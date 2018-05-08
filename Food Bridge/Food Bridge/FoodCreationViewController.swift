@@ -25,6 +25,7 @@ UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UI
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var choosePicture: UIButton!
     @IBOutlet weak var imageOutlet: UIImageView!
+    @IBOutlet weak var add: UIBarButtonItem!
     
     
     @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
@@ -38,11 +39,16 @@ UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UI
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let food = Food(picture: imageOutlet.image!, category: fakeCats[rowSelected], description: textField.text!) else {
-            fatalError("Unable to instantiate food1")
+        if add == sender as? UIBarButtonItem {
+            guard let food = Food(picture: imageOutlet.image!, category: fakeCats[rowSelected], description: textField.text!) else {
+                fatalError("Unable to instantiate food1")
+            }
+            self.food = food
+            print("data generated")
+        } else {
+            self.food = nil
         }
-        self.food = food
-        print("data generated")
+        
     }
     
     override func viewDidLoad() {

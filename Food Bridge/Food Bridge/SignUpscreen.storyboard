@@ -118,7 +118,7 @@
                     <connections>
                         <outlet property="email" destination="PIU-Br-X9U" id="u3e-F4-Cx1"/>
                         <outlet property="password" destination="QMU-ax-gPC" id="BoX-zf-Iqq"/>
-                        <segue destination="fQx-oi-hd5" kind="showDetail" identifier="signedUp" action="showViewController:sender:" id="6OI-lR-t4t"/>
+                        <segue destination="fQx-oi-hd5" kind="presentation" identifier="signedUp" id="6OI-lR-t4t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Cm-vW-pTY" userLabel="First Responder" sceneMemberID="firstResponder"/>

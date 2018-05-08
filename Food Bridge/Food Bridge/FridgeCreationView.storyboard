@@ -13,7 +13,7 @@
         <scene sceneID="Yma-Kr-V6n">
             <objects>
                 <tableViewController id="AXz-pE-Ula" customClass="FridgeCreationTableViewController" customModule="Food_Bridge" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Mn-49-lVP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Mn-49-lVP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,6 +42,7 @@
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="ImageNotAvailable" id="G9y-lt-O0q">
                                             <rect key="frame" x="16" y="17" width="112" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -82,7 +83,6 @@
         <!--My Fridge-->
         <scene sceneID="tmt-k6-vhX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vAe-vz-tCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="74h-Yn-3PK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Fridge" id="Kou-V6-Gwr">
                         <color key="badgeColor" red="0.1843137255" green="0.44705882349999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -98,6 +98,7 @@
                         <segue destination="AXz-pE-Ula" kind="relationship" relationship="rootViewController" id="hoO-y2-53K"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAe-vz-tCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-185" y="96"/>
         </scene>

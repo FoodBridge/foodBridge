@@ -27,4 +27,5 @@ class FoodItemTableViewCell: UITableViewCell {
 
     @IBAction func deleteButton(_ sender: UIButton) {
     }
+    
 }

@@ -65,7 +65,7 @@
                     <navigationItem key="navigationItem" title="New Food Item" id="RU1-Mq-C2I">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="C25-9o-PwX">
                             <connections>
-                                <segue destination="ghp-hJ-WCI" kind="show" id="8FV-ci-a1m"/>
+                                <segue destination="Rwy-Xl-mUo" kind="unwind" unwindAction="addFoodItemWithSegue:" id="PLc-Xh-2OA"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="5fh-Ue-5D6">
@@ -76,6 +76,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorView" destination="efd-Dm-aJo" id="0UH-bk-Deu"/>
+                        <outlet property="add" destination="5fh-Ue-5D6" id="90u-Ce-RO3"/>
                         <outlet property="categoryPicker" destination="co5-Sx-j2T" id="0zM-RQ-Hcx"/>
                         <outlet property="choosePicture" destination="YHT-ai-mMb" id="6Q4-fu-bIj"/>
                         <outlet property="imageOutlet" destination="5fb-RE-JOq" id="Abp-eL-nZx"/>
